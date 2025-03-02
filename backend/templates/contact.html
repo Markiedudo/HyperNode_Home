@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - HyperNode{% endblock %}
+
+{% block content %}
+    <section class="contact-container">
+        <h1>Contact Us</h1>
+        <p>We’d love to hear from you! Fill out the form below.</p>
+
+        <form id="contactForm">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" id="name" name="name" required>
+                <label for="name">Your Name</label>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="email" name="email" required>
+                <label for="email">Your Email</label>
+            </div>
+
+            <div class="input-group">
+                <textarea id="message" name="message" required></textarea>
+                <label for="message">Your Message</label>
+            </div>
+
+            <button type="submit">Send Message</button>
+        </form>
+
+        <p id="successMessage" style="display: none;">✅ Message sent successfully!</p>
+    </section>
+{% endblock %}

@@ -1,0 +1,176 @@
+/* General Styles */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark Mode Default */
+    color: white;
+    transition: all 0.3s ease;
+}
+
+/* Navigation Bar */
+.navbar {
+    background: rgba(20, 20, 20, 0.9);
+    backdrop-filter: blur(10px);
+    padding: clamp(10px, 2vw, 20px) clamp(15px, 3vw, 30px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 95%;
+    margin: 0 auto;
+    box-shadow: 0px 4px 10px rgba(0, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.navbar .logo {
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: bold;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: clamp(10px, 3vw, 20px);
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: clamp(14px, 2vw, 18px);
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #0ff;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75vh; /* ✅ Adjusted height */
+    padding: 0 5%;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+/* CTA Button */
+.cta-button {
+    margin-top: 20px;
+    padding: clamp(10px, 1.5vw, 14px) clamp(20px, 2.5vw, 30px);
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #007aff, #00d4ff);
+    color: white;
+    font-size: clamp(14px, 2vw, 18px);
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 10px rgba(0, 212, 255, 0.3);
+}
+
+/* Features Section */
+.features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(15px, 4vw, 30px);
+    margin: clamp(30px, 5vw, 50px) auto;
+    max-width: 1200px;
+    padding: 0 5%;
+}
+
+.feature {
+    flex: 1;
+    min-width: clamp(200px, 40vw, 350px);
+    max-width: 400px;
+    padding: clamp(15px, 3vw, 25px);
+    background: #1c1c1c;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 255, 255, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 10px;
+    color: #0ff;
+}
+
+/* Floating Contact Button */
+.floating-contact {
+    position: fixed;
+    bottom: clamp(15px, 4vw, 30px);
+    right: clamp(15px, 4vw, 30px);
+    background: linear-gradient(135deg, #007aff, #00d4ff);
+    color: white;
+    padding: clamp(12px, 1.8vw, 16px) clamp(18px, 2.5vw, 22px);
+    border-radius: 50px;
+    font-size: clamp(14px, 2vw, 18px);
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: clamp(5px, 1vw, 10px);
+    box-shadow: 0px 5px 15px rgba(0, 212, 255, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+.floating-contact:hover {
+    box-shadow: 0px 8px 20px rgba(0, 212, 255, 0.7);
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    margin-top: clamp(30px, 5vw, 50px);
+    padding: clamp(15px, 3vw, 25px);
+    background-color: #101010;
+    font-size: clamp(12px, 1.5vw, 16px);
+    color: #aaa;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero {
+        height: auto;
+        padding: 50px 5%;
+    }
+
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature {
+        width: 90%;
+    }
+}

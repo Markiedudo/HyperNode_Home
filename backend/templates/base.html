@@ -1,0 +1,108 @@
+{% load static %}  
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HyperNode{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">  <!-- ✅ FIXED STATIC FILE -->
+</head>
+<body class="dark-mode">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">HyperNode</div>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+        </ul>
+    </nav>  <!-- ✅ ADDED CLOSING NAV TAG -->
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2025 HyperNode. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Floating Contact Button -->
+    <a href="#" class="floating-contact" onclick="openModal()">
+        📩 <span>Contact Us</span>
+    </a>
+
+    <!-- Contact Form Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <h2>Contact Us</h2>
+
+            <p id="successMessage" class="hidden success-message">✅ Message sent successfully!</p>
+            <p id="errorMessage" class="hidden error-message">❌ Failed to send message. Try again.</p>
+
+            <!-- Contact Form -->
+            <form id="contactForm">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" id="name" name="name" required>
+                    <label for="name">Your Name</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Your Email</label>
+                </div>
+
+                <div class="input-group">
+                    <textarea id="message" name="message" required></textarea>
+                    <label for="message">Your Message</label>
+                </div>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript for Modal -->
+    <script>
+        function openModal() {
+            document.getElementById("contactModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("contactModal").style.display = "none";
+        }
+
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+            fetch("{% url 'contact' %}", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById("successMessage").classList.remove("hidden");
+                    document.getElementById("errorMessage").classList.add("hidden");
+                    document.getElementById("contactForm").reset();
+                    setTimeout(closeModal, 2000);
+                } else {
+                    document.getElementById("errorMessage").classList.remove("hidden");
+                    document.getElementById("successMessage").classList.add("hidden");
+                }
+            })
+            .catch(error => {
+                document.getElementById("errorMessage").classList.remove("hidden");
+                document.getElementById("successMessage").classList.add("hidden");
+            });
+        });
+    </script>
+
+</body>
+</html>
